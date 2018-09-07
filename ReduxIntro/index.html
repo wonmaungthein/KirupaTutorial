@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Favourite Colours</title>
+    <script src="http://unpkg.com/redux@latest/dist/redux.js"></script>
+</head>
+<body>
+    <script>
+        function addColor(value) {
+            return {
+                type: "ADD",
+                color: value
+            }
+        }
+        function removeColor(value) {
+            return {
+                type: "REMOVE",
+                color: value
+            }
+        }
+        function favouriteColors(state, action) {
+            if (state === undefined) {
+                state = [];
+            }
+            if (action.type === "ADD") {
+                return state.concat(action.color);
+            } else if (action.type === 'REMOVE') {
+                return state.filter(function (item) {
+                    return item !== action.color;
+                });
+            } else {
+                return state;
+            }
+        }
+
+        var store = Redux.createStore(favouriteColors)
+    </script>
+
+</body>
+
+</html>
